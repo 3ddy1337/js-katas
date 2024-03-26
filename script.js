@@ -82,10 +82,81 @@ Advanced users may find this extremely easy and can easily write this in one lin
 */
 
 function sum(numbers) {
-  let total = 0;
+  let total = 0; // If the array is empty it returns 0, like in the description said.
   for (let i = 0; i < numbers.length; i++) {
     // Iterate through numbers
-    total += numbers[i]; // Add number to total (total + number = newTotal + number = newTotal ...)
+    total += numbers[i]; // Add number to total @ [i] (total + number[0] = newTotal + number[1] = newTotal ...)
   }
   return total;
+}
+
+// Number of people in the bus ***************************************************************************
+
+/*
+There is a bus moving in the city which takes and drops some people at each bus stop.
+
+You are provided with a list (or array) of integer pairs. Elements of each pair represent the number of people that get on the bus (the first item) and the number of people that get off the bus (the second item) at a bus stop.
+
+Your task is to return the number of people who are still on the bus after the last bus stop (after the last array). Even though it is the last bus stop, the bus might not be empty and some people might still be inside the bus, they are probably sleeping there :D
+
+Take a look on the test cases.
+
+Please keep in mind that the test cases ensure that the number of people in the bus is always >= 0. So the returned integer can't be negative.
+
+The second value in the first pair in the array is 0, since the bus is empty in the first bus stop.
+
+[[10,0],[3,4],[1,8]]
+*/
+
+let number = function (busStops) {
+  let count = 0; // Starting counter for in and out
+  for (let i = 0; i < busStops.length; i++) {
+    // Iteration through the first array
+    const on = busStops[i][0]; // Variable "on" for passangers go into the bus. [i] = The point in the iteration and [0] for the first number in the nested array.
+    const out = busStops[i][1]; // Variable "out" for passangers go out of the bus. [i] = The point in the iteration and [1] for the second number in the nested array.
+    count += on; // count + on = newCount (and so on)
+    count -= out; // newCount - out = newCount (and so on)
+  }
+  return count; // Return count for the whole array iteration.
+};
+
+// Get the middle character ****************************************************************************
+
+/*
+You are going to be given a word. Your job is to return the middle character of the word. If the word's length is odd, return the middle character. If the word's length is even, return the middle 2 characters.
+
+#Examples:
+
+Kata.getMiddle("test") should return "es"
+
+Kata.getMiddle("testing") should return "t"
+
+Kata.getMiddle("middle") should return "dd"
+
+Kata.getMiddle("A") should return "A"
+#Input
+
+A word (string) of length 0 < str < 1000 (In javascript you may get slightly more than 1000 in some test cases due to an error in the test cases). You do not need to test for this. This is only here to tell you that you do not need to worry about your solution timing out.
+
+#Output
+
+The middle character(s) of the word represented as a string.
+*/
+
+function getMiddle(s) {
+  if (s.length === 1) {
+    // Single char string
+    return s;
+  } else if (s.length % 2 === 0) {
+    // Even string
+    const firstCharEven = s.length / 2 - 1;
+    const secondCharEven = firstCharEven + 2;
+    const stringEven = s.substring(firstCharEven, secondCharEven);
+    return stringEven;
+  } else {
+    // Odd string
+    const CharOdd = Math.floor(s.length / 2);
+    const stringOdd = s[CharOdd];
+    return stringOdd;
+  }
 }
