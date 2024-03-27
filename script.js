@@ -339,3 +339,52 @@ function repeatStr(n, s) {
   return result;
 }
 */
+
+// Abbreviate a two word name **********************************************************************
+/*
+
+DESCRIPTION:
+Write a function to convert a name into initials. This kata strictly takes two words with one space in between them.
+
+The output should be two capital letters with a dot separating them.
+
+It should look like this:
+
+Sam Harris => S.H
+
+patrick feeney => P.F
+
+*/
+
+function abbrevName(name) {
+  let nameArray = name.split(" "); // Split the word by the space and creates an array of it
+  return (nameArray[0][0] + "." + nameArray[1][0]).toUpperCase();
+}
+
+// Remove an exclamation mark from the end of string *****************************************************
+/*
+
+DESCRIPTION:
+Description:
+Remove an exclamation mark from the end of a string. For a beginner kata, you can assume that the input data is always a string, no need to verify it.
+
+Examples
+"Hi!"     ---> "Hi"
+"Hi!!!"   ---> "Hi!!"
+"!Hi"     ---> "!Hi"
+"!Hi!"    ---> "!Hi"
+"Hi! Hi!" ---> "Hi! Hi"
+"Hi"      ---> "Hi"
+
+*/
+
+function remove(string) {
+  if (string[string.length - 1] === "!") {
+    // Check if end of string is a "!"
+    let lastChar = string.length - 1; // Determined the last char number for slice
+    let newString = string.slice(0, lastChar); // Cut out until last char
+    return newString;
+  } else {
+    return string;
+  }
+}
