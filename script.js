@@ -388,3 +388,124 @@ function remove(string) {
     return string;
   }
 }
+
+// or
+
+/*
+function remove(string) {
+  if (string.endsWith("!")) {
+    return string.substring(0, string.length - 1);
+  } else {
+    return string;
+  }
+}
+*/
+
+// Isograms ******************************************************************************
+/*
+
+DESCRIPTION:
+An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
+
+Example: (Input --> Output)
+
+"Dermatoglyphics" --> true "aba" --> false "moOse" --> false (ignore letter case)
+
+isIsogram "Dermatoglyphics" = true
+isIsogram "moose" = false
+isIsogram "aba" = false
+
+*/
+
+function isIsogram(str) {
+  const newString = str.toLowerCase(); // All chars to lower case
+  const charMap = {}; // Empty object to put in found letters
+
+  for (let i = 0; i < newString.length; i++) {
+    // Iterate through each char in str
+    const char = newString[i];
+
+    if (charMap[char]) {
+      return false;
+    } else {
+      charMap[char] = true;
+    }
+  }
+  return true;
+}
+
+// Vowel count ******************************************************************
+/*
+
+DESCRIPTION:
+Return the number (count) of vowels in the given string.
+
+We will consider a, e, i, o, u as vowels for this Kata (but not y).
+
+The input string will only consist of lower case letters and/or spaces.
+
+*/
+
+function getCount(str) {
+  let count = 0; // Start counter at 0
+  const charsToSearch = ["a", "e", "i", "o", "u"]; // Vowels to search for in string
+  for (let i = 0; i < str.length; i++)
+    if (charsToSearch.includes(str[i])) {
+      // Search vowels in string @ [i]
+      count++; // When true count +1
+    }
+  return count;
+}
+
+// Descending order **************************************************************
+/*
+
+DESCRIPTION:
+Your task is to make a function that can take any non-negative integer as an argument and return it with its digits in descending order. Essentially, rearrange the digits to create the highest possible number.
+
+Examples:
+Input: 42145 Output: 54421
+
+Input: 145263 Output: 654321
+
+Input: 123456789 Output: 987654321
+
+*/
+
+function descendingOrder(n) {
+  const str = n.toString(); // Transform the number n to a string
+  const sortStr = str
+    .split("") // Creates an array for each char in the string
+    .sort((a, b) => b - a) // Sort the elements in the array in descending order
+    .join(""); // Join the elements of the array to a string
+  return Number(sortStr); // Transform the string to number
+}
+
+// Credit card mask ************************************************************
+/*
+
+Usually when you buy something, you're asked whether your credit card number, phone number or answer to your most secret question is still correct. However, since someone could look over your shoulder, you don't want that shown on your screen. Instead, we mask it.
+
+Your task is to write a function maskify, which changes all but the last four characters into '#'.
+
+Examples (input --> output):
+"4556364607935616" --> "############5616"
+     "64607935616" -->      "#######5616"
+               "1" -->                "1"
+                "" -->                 ""
+
+// "What was the name of your first pet?"
+"Skippy" --> "##ippy"
+
+*/
+
+function maskify(cc) {
+  if (cc.length <= 4) {
+    // If number less or equal 4 return cc
+    return cc;
+  } else {
+    const lastFourChar = cc.slice(-4); // Save last 4 numbers
+    const maskedNumber = "#".repeat(cc.length - 4) + lastFourChar; // Repeat the actual length - 4 of cc with "#" and add last 4 numbers
+    return maskedNumber;
+  }
+}
